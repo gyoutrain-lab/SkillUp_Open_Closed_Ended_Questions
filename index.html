@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Sulaiman Al Habib Medical Group - Reverse PQD Assessment Engine</title>
+    <title>Dr. Sulaiman Al Habib Medical Group - Balanced Reverse PQD Assessment Engine</title>
     <style>
         :root {
             --primary: #0f766e;
@@ -85,7 +85,7 @@
     <!-- REGISTRATION VIEW -->
     <div id="view-register">
         <h1>Dr. Sulaiman Al Habib Medical Group</h1>
-        <p style="color:#64748b;">Reverse Question-Response Nursing PQD Assessment Engine</p>
+        <p style="color:#64748b;">Balanced Reverse Question-Response Nursing PQD Assessment Engine</p>
         <form id="form-register" onsubmit="event.preventDefault(); handleRegister();">
             <div class="form-group">
                 <label for="user-name">Candidate Name:</label>
@@ -95,7 +95,7 @@
                 <label for="user-phone">Candidate Phone / ID:</label>
                 <input type="tel" id="user-phone" required placeholder="e.g. 081901685253">
             </div>
-            <button type="submit" class="btn-block">Access Reverse Assessment Engine</button>
+            <button type="submit" class="btn-block">Access Assessment Engine</button>
         </form>
     </div>
 
@@ -105,15 +105,15 @@
         <p>Candidate ID: <strong><span id="dash-phone"></span></strong></p>
 
         <div class="card">
-            <h3>1. Pre-Test Reverse Assessment (50 Items)</h3>
-            <p>Comprises 50% Open-Ended (9 Wh- words), 25% Closed-Ended (To-Be, Auxiliaries do/does/did, Yes/No), and 25% Blended scenarios based on HMG PQD[cite: 3].</p>
+            <h3>1. Pre-Test Balanced Assessment (50 Items)</h3>
+            <p>Comprises balanced-length options across Open-Ended, Closed-Ended, and Blended HMG PQD criteria[cite: 3].</p>
             <div id="status-pretest">Status: <span class="badge bg-blue">Not Started</span></div>
             <button id="btn-pretest" onclick="startTest('pre')" style="margin-top:15px;">Start Pre-Test (50 Items)</button>
         </div>
 
         <div class="card">
             <h3>2. Post-Test Comprehensive Assessment (50 Items)</h3>
-            <p>Advanced evaluation test matching candidate responses to precise interviewer question structures[cite: 3].</p>
+            <p>Advanced validation test with balanced options matching precise interviewer questions[cite: 3].</p>
             <div id="status-posttest">Status: <span class="badge bg-blue">Locked</span></div>
             <button id="btn-posttest" onclick="startTest('post')" style="margin-top:15px;" disabled>Start Post-Test (50 Items)</button>
         </div>
@@ -123,12 +123,12 @@
 
     <!-- TEST VIEW -->
     <div id="view-test" class="hidden">
-        <h2 id="test-title">HMG Reverse Question-Response Examination</h2>
+        <h2 id="test-title">HMG Balanced Reverse Examination</h2>
         <div id="q-type-badge" class="type-badge"></div>
         <p id="test-progress" style="font-weight:bold; color:var(--primary);">Question 1</p>
         
         <div class="card">
-            <p style="font-size: 14px; color: #64748b; margin-bottom: 5px;">Determine the correct interviewer question for this candidate response:</p>
+            <p style="font-size: 14px; color: #64748b; margin-bottom: 5px;">Determine the correct interviewer question for this candidate statement:</p>
             <div id="response-statement" class="response-display"></div>
             <div id="options-container"></div>
         </div>
@@ -149,13 +149,13 @@
     <!-- OPERATOR MANAGEMENT CONSOLE -->
     <div id="view-admin" class="hidden">
         <h2>Operator Management Console</h2>
-        <p style="color:#64748b;">Protected Passcode Verification Active (HMG Reverse Engine)</p>
+        <p style="color:#64748b;">Protected Passcode Verification Active (Balanced Engine)</p>
         
         <button onclick="showDashboard()" class="btn-secondary" style="margin-bottom: 20px;">&larr; Exit Operator Console</button>
 
         <div class="card">
             <h3>Direct Test Item Repository Access</h3>
-            <p style="font-size:14px; color:#475569;">Inspect exact response statements, matching questions, grammatical structures (Wh-, to-be, modals, auxiliaries), and randomized option distributions:</p>
+            <p style="font-size:14px; color:#475569;">Inspect exact statements, balanced-length options, and analytical rationales:</p>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
                 <button onclick="inspectSet('pre')" class="btn-secondary">Inspect Pre-Test (50 Items)</button>
                 <button onclick="inspectSet('post')" class="btn-secondary">Inspect Post-Test (50 Items)</button>
@@ -213,7 +213,7 @@
     <!-- REPOSITORY INSPECTOR VIEW -->
     <div id="view-inspector" class="hidden">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
-            <h2 id="inspector-title" style="margin:0;">Repository Inspection & Reverse Mapping</h2>
+            <h2 id="inspector-title" style="margin:0;">Repository Inspection & Balanced Options</h2>
             <button onclick="openAdminConsole()" class="btn-secondary">&larr; Back to Operator Console</button>
         </div>
         <div id="inspector-content"></div>
@@ -240,215 +240,214 @@
 <script>
 const OPERATOR_PASS = "SCFHS_2026";
 
-// MASTER REVERSE DATA SOURCE (Kandidat Statement sebagai Soal, Opsi adalah Pertanyaan HRD)
-// Meliputi 9 Wh- words (What, Who, When, Where, Whom, Whose, Which, Why, How), To-Be, Modals, & Auxiliaries (do/does/did)
-const hmgReverseTemplates = [
-    // Closed-Ended (25%): Konfirmasi Yes/No, to-be, auxiliaries do/does/did
+// MASTER BALANCED TEMPLATES (Opsi jawaban dibuat setara panjang dan strukturnya)
+const hmgBalancedTemplates = [
+    // Closed-Ended
     {
         type: "Closed-Ended",
         response: "Yes, my total clinical nursing experience is exactly four years in the inpatient department[cite: 3].",
         options: [
-            "What is your total nursing experience?",
             "Is your total clinical nursing experience four years in the inpatient department?",
-            "Where do you work right now?",
-            "How many years did you work?"
+            "Was your total clinical nursing experience four years in the inpatient department?",
+            "Does your total clinical nursing experience reach four years in the inpatient unit?",
+            "Did your total clinical nursing experience span four years in the inpatient ward?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup (Closed-Ended dengan to-be 'Is' dan konfirmasi Yes/No) berdasarkan data experience PQD[cite: 3].",
-        rationale: "Pernyataan konfirmasi 'Yes, my total...' merupakan jawaban langsung dari pertanyaan tertutup 'Is your total clinical nursing experience four years...'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji pertanyaan tertutup dengan to-be 'Is' dan konfirmasi kesesuaian pengalaman klinik[cite: 3].",
+        rationale: "Respon 'Yes, my total...' dijawab secara presisi oleh pertanyaan konfirmasi 'Is your total clinical nursing experience four years in the inpatient department?'[cite: 3]."
     },
     {
         type: "Closed-Ended",
         response: "Yes, I hold an active Bachelor Degree in Nursing for this recommended position[cite: 3].",
         options: [
             "Are you holding an active Bachelor Degree in Nursing for this recommended position?",
-            "What degree do you have?",
-            "When did you graduate?",
-            "Whose diploma is this?"
+            "Were you holding an active Bachelor Degree in Nursing for this recommended role?",
+            "Do you hold an active Bachelor Degree in Nursing for this recommended position?",
+            "Did you hold an active Bachelor Degree in Nursing for this recommended post?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Are' dan konfirmasi kualifikasi pendidikan[cite: 3].",
-        rationale: "Respons 'Yes, I hold...' lahir dari pertanyaan konfirmasi 'Are you holding an active Bachelor Degree...'[cite: 3]."
+        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Are' untuk verifikasi status ijazah[cite: 3].",
+        rationale: "Respon 'Yes, I hold...' merupakan konfirmasi langsung terhadap pertanyaan 'Are you holding an active Bachelor Degree in Nursing for this recommended position?'[cite: 3]."
     },
     {
         type: "Closed-Ended",
         response: "No, my previous department was the Intensive Care Unit, not the outpatient clinic.",
         options: [
-            "What was your previous department?",
-            "Was your previous department the outpatient clinic?",
-            "Where is the ICU located?",
-            "Why did you leave the ICU?"
+            "Was your previous department the Intensive Care Unit instead of the outpatient clinic?",
+            "Is your previous department the Intensive Care Unit instead of the outpatient clinic?",
+            "Did your previous department remain the Intensive Care Unit or the outpatient clinic?",
+            "Does your previous department count as the Intensive Care Unit or outpatient clinic?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan past to-be 'Was'[cite: 3].",
-        rationale: "Respons penyangkalan 'No, my previous department was...' menjawab pertanyaan tertutup 'Was your previous department the outpatient clinic?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan past to-be 'Was' untuk koreksi unit kerja.",
+        rationale: "Respon penyangkalan departemen dijawab oleh pertanyaan 'Was your previous department the Intensive Care Unit instead of the outpatient clinic?'"
     },
     {
         type: "Closed-Ended",
         response: "Yes, the official overall average rating threshold for hiring is set at 60% and above[cite: 3].",
         options: [
-            "What is the passing score?",
             "Is the official overall average rating threshold for hiring set at 60% and above?",
-            "How do you calculate the score?",
-            "Who sets the rating?"
+            "Was the official overall average rating threshold for hiring set at 60% and above?",
+            "Does the official overall average rating threshold for hiring reach 60% and above?",
+            "Did the official overall average rating threshold for hiring achieve 60% and above?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Is' untuk aturan kelulusan HMG[cite: 3].",
-        rationale: "Respons konfirmasi 'Yes, the official overall...' merupakan jawaban dari 'Is the official overall average rating threshold for hiring set at 60% and above?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Is' terkait ambang batas nilai kelulusan HMG[cite: 3].",
+        rationale: "Respon 'Yes, the official overall...' merupakan jawaban konfirmasi dari 'Is the official overall average rating threshold for hiring set at 60% and above?'[cite: 3]."
     },
 
-    // Open-Ended (50%): Menggunakan 9 Wh- Words (What, Who, When, Where, Whom, Whose, Which, Why, How)
+    // Open-Ended (9 Wh- words dengan opsi setara panjangnya)
     {
         type: "Open-Ended",
         response: "My current hospital name is Al-Noor Specialist Hospital and my position is Staff Nurse[cite: 3].",
         options: [
-            "Are you working in a hospital?",
-            "What is your current hospital name and your exact position?",
-            "Do you like your position?",
-            "Is Al-Noor a big hospital?"
+            "What is your current hospital name and what is your exact position title?",
+            "Where is your current hospital located and what is your exact position title?",
+            "Which is your current hospital branch and what is your exact position rank?",
+            "Whose is your current hospital employer and what is your exact position level?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word 'What' untuk data Current Employment Details pada PQD[cite: 3].",
-        rationale: "Pernyataan identitas rumah sakit dan posisi dijawab dari pertanyaan 'What is your current hospital name and your exact position?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word 'What' dengan variasi opsi setara untuk identitas penempatan kerja[cite: 3].",
+        rationale: "Respon nama rumah sakit dan posisi dijawab oleh pertanyaan 'What is your current hospital name and what is your exact position title?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "The recruiter who conducted and signed my interview sheet is Mr. Abdullah from Corporate HR[cite: 3].",
         options: [
-            "Who is the recruiter that conducted and signed your interview sheet?",
-            "Did Mr. Abdullah sign the sheet?",
-            "Whose signature is this?",
-            "Is the recruiter available?"
+            "Who is the recruiter that conducted and signed your official interview sheet?",
+            "Whom is the recruiter that conducted and signed your official interview sheet?",
+            "Whose is the recruiter that conducted and signed your official interview sheet?",
+            "Which is the recruiter that conducted and signed your official interview sheet?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word 'Who' terkait penanda tangan dokumen PQD[cite: 3].",
-        rationale: "Respons menyebutkan nama perekrut sebagai jawaban atas pertanyaan 'Who is the recruiter that conducted and signed your interview sheet?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word subjek 'Who' dengan pengecoh kata ganti tanya serupa[cite: 3].",
+        rationale: "Respon penyebutan nama perekrut menjawab pertanyaan 'Who is the recruiter that conducted and signed your official interview sheet?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "I graduated with my nursing diploma in the year 2021[cite: 3].",
         options: [
-            "Did you graduate in 2021?",
-            "When did you pass and graduate with your nursing diploma?",
-            "What is your diploma?",
-            "Where did you study?"
+            "When did you complete your education and graduate with your nursing diploma?",
+            "Where did you complete your education and graduate with your nursing diploma?",
+            "Why did you complete your education and graduate with your nursing diploma?",
+            "How did you complete your education and graduate with your nursing diploma?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word 'When' terkait tahun kelulusan[cite: 3].",
-        rationale: "Respons waktu kelulusan menjawab pertanyaan 'When did you pass and graduate with your nursing diploma?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word waktu 'When' dengan opsi setara konteks kelulusan[cite: 3].",
+        rationale: "Respon tahun kelulusan menjawab pertanyaan 'When did you complete your education and graduate with your nursing diploma?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "I worked previously at King Faisal Specialist Hospital located in Riyadh[cite: 3].",
         options: [
-            "Is King Faisal Hospital in Riyadh?",
-            "Where did you work previously before applying to HMG?",
-            "What did you do in Riyadh?",
-            "Did you like Riyadh?"
+            "Where did you work previously before applying for this position at HMG?",
+            "When did you work previously before applying for this position at HMG?",
+            "Why did you work previously before applying for this position at HMG?",
+            "How did you work previously before applying for this position at HMG?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word 'Where' terkait lokasi rumah sakit sebelumnya[cite: 3].",
-        rationale: "Pernyataan lokasi tempat kerja menjawab pertanyaan 'Where did you work previously before applying to HMG?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word tempat 'Where' dengan struktur opsi yang disetarakan[cite: 3].",
+        rationale: "Respon tempat kerja lama menjawab pertanyaan 'Where did you work previously before applying for this position at HMG?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "The interviewer whom I met during the initial screening was Dr. Sulaiman[cite: 3].",
         options: [
-            "Who did you meet?",
-            "Whom did you meet during the initial recruitment screening?",
-            "Did you meet Dr. Sulaiman?",
-            "Whose interviewer was that?"
+            "Whom did you meet and talk with during your initial recruitment screening?",
+            "Who did you meet and talk with during your initial recruitment screening?",
+            "Whose did you meet and talk with during your initial recruitment screening?",
+            "Which did you meet and talk with during your initial recruitment screening?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word objek 'Whom' dalam wawancara[cite: 3].",
-        rationale: "Respons mengacu pada orang yang ditemui sebagai objek jawaban dari 'Whom did you meet during the initial recruitment screening?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word objek 'Whom' dengan opsi pengecoh berukuran sama[cite: 3].",
+        rationale: "Respon orang yang ditemui menjawab pertanyaan 'Whom did you meet and talk with during your initial recruitment screening?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "This verified nursing qualification certificate and credential file belongs to me[cite: 3].",
         options: [
-            "Is this your certificate?",
-            "Whose nursing qualification certificate and credential file is this?",
-            "What certificate do you have?",
-            "Where is your file?"
+            "Whose nursing qualification certificate and credential file is this document?",
+            "Who nursing qualification certificate and credential file is this document?",
+            "Whom nursing qualification certificate and credential file is this document?",
+            "Which nursing qualification certificate and credential file is this document?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word kepemilikan 'Whose' pada berkas PQD[cite: 3].",
-        rationale: "Respons kepemilikan menjawab pertanyaan 'Whose nursing qualification certificate and credential file is this?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word kepemilikan 'Whose' dengan variasi kata ganti tanya[cite: 3].",
+        rationale: "Respon kepemilikan berkas menjawab pertanyaan 'Whose nursing qualification certificate and credential file is this document?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "Among all available medical departments, I prefer the Critical Care Department for my clinical placement[cite: 3].",
         options: [
-            "Do you like Critical Care?",
-            "Which medical department do you prefer for your clinical placement?",
-            "What department is this?",
-            "Where is Critical Care?"
+            "Which medical department do you prefer and select for your clinical placement?",
+            "What medical department do you prefer and select for your clinical placement?",
+            "Where medical department do you prefer and select for your clinical placement?",
+            "Whose medical department do you prefer and select for your clinical placement?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word pilihan 'Which' pada penempatan departemen[cite: 3].",
-        rationale: "Respons spesifik pilihan departemen menjawab pertanyaan 'Which medical department do you prefer for your clinical placement?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word pilihan 'Which' dengan opsi sepadan[cite: 3].",
+        rationale: "Respon pilihan departemen menjawab pertanyaan 'Which medical department do you prefer and select for your clinical placement?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "I chose Dr. Sulaiman Al Habib Medical Group because of its outstanding international patient safety standards and global career growth[cite: 3].",
         options: [
-            "Why did you choose Dr. Sulaiman Al Habib Medical Group for your career?",
-            "Is HMG a good hospital?",
-            "What are safety standards?",
-            "When did you apply?"
+            "Why did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?",
+            "Where did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?",
+            "When did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?",
+            "How did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word alasan 'Why' dalam motivasi kerja[cite: 3].",
-        rationale: "Respons alasan mendalam menjawab pertanyaan 'Why did you choose Dr. Sulaiman Al Habib Medical Group for your career?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word alasan 'Why' dengan pilihan opsi berkalimat setara[cite: 3].",
+        rationale: "Respon alasan mendalam menjawab pertanyaan 'Why did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?'[cite: 3]."
     },
     {
         type: "Open-Ended",
         response: "I successfully completed the clinical competency assessment by scoring an overall average rating of 85%[cite: 3].",
         options: [
-            "What is your score?",
             "How did you complete the clinical competency assessment and what score did you achieve?",
-            "Did you pass the test?",
-            "Is 85% a good score?"
+            "What did you complete the clinical competency assessment and what score did you achieve?",
+            "Where did you complete the clinical competency assessment and what score did you achieve?",
+            "When did you complete the clinical competency assessment and what score did you achieve?"
         ],
-        correctIndex: 1,
-        intent: "Maksud Soal: Menguji penggunaan Wh- word 'How' terkait proses dan skor penilaian[cite: 3].",
-        rationale: "Respons rincian pencapaian skor menjawab pertanyaan 'How did you complete the clinical competency assessment and what score did you achieve?'[cite: 3]."
+        correctIndex: 0,
+        intent: "Maksud Soal: Menguji Wh- word cara 'How' dengan format kalimat tanya yang diseimbangkan[cite: 3].",
+        rationale: "Respon rincian pencapaian skor menjawab pertanyaan 'How did you complete the clinical competency assessment and what score did you achieve?'[cite: 3]."
     },
 
-    // Blended (25%): Gabungan konfirmasi dan investigasi mendalam
+    // Blended
     {
         type: "Blended (Closed & Open)",
         response: "Yes, my general presentation is highly professional, and it projects clinical confidence and corporate readiness[cite: 3].",
         options: [
             "Is your general presentation professional, and what impression do you project for the clinical environment?",
-            "What do you wear?",
-            "Do you look professional?",
-            "Why is presentation important?"
+            "Was your general presentation professional, and what impression do you project for the clinical environment?",
+            "Does your general presentation stay professional, and what impression do you project for the clinical environment?",
+            "Did your general presentation remain professional, and what impression do you project for the clinical environment?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji gabungan konfirmasi tertutup dan pertanyaan terbuka mengenai *General Presentation*[cite: 3].",
-        rationale: "Respons gabungan konfirmasi dan deskripsi profesional menjawab pertanyaan 'Is your general presentation professional, and what impression do you project for the clinical environment?'[cite: 3]."
+        intent: "Maksud Soal: Menguji gabungan tertutup dan terbuka mengenai *General Presentation* dengan opsi sepadan[cite: 3].",
+        rationale: "Respon konfirmasi dan deskripsi profesional menjawab pertanyaan 'Is your general presentation professional, and what impression do you project for the clinical environment?'[cite: 3]."
     },
     {
         type: "Blended (Closed & Open)",
         response: "Yes, both job-related knowledge and job-related skills are evaluated separately to ensure theoretical and practical excellence[cite: 3].",
         options: [
             "Are both job-related knowledge and job-related skills evaluated separately, and what do they measure?",
-            "What are skills?",
-            "Do you have knowledge?",
-            "How are skills tested?"
+            "Were both job-related knowledge and job-related skills evaluated separately, and what do they measure?",
+            "Do both job-related knowledge and job-related skills get evaluated separately, and what do they measure?",
+            "Did both job-related knowledge and job-related skills undergo separate evaluation, and what do they measure?"
         ],
         correctIndex: 0,
         intent: "Maksud Soal: Menguji kombinasi pertanyaan tertutup dan terbuka terkait pemisahan *Knowledge* dan *Skills*[cite: 3].",
-        rationale: "Respons konfirmasi dan fungsi penilaian menjawab pertanyaan 'Are both job-related knowledge and job-related skills evaluated separately, and what do they measure?'[cite: 3]."
+        rationale: "Respon konfirmasi dan fungsi penilaian menjawab pertanyaan 'Are both job-related knowledge and job-related skills evaluated separately, and what do they measure?'[cite: 3]."
     }
 ];
 
-function generateHmgReverseBank(totalCount) {
+function generateHmgBalancedBank(totalCount) {
     let bank = [];
     for (let i = 0; i < totalCount; i++) {
-        let base = hmgReverseTemplates[i % hmgReverseTemplates.length];
+        let base = hmgBalancedTemplates[i % hmgBalancedTemplates.length];
         let qNum = i + 1;
         
         let assignedType = "";
@@ -461,7 +460,7 @@ function generateHmgReverseBank(totalCount) {
         let optionsArr = [...base.options];
         let correctText = optionsArr[base.correctIndex];
         
-        // Acak posisi jawaban benar agar tidak monoton di indeks 0
+        // Acak posisi jawaban benar secara merata agar tidak monoton
         let seed = (qNum * 19) % optionsArr.length;
         for (let s = 0; s < seed; s++) {
             optionsArr.push(optionsArr.shift());
@@ -473,15 +472,15 @@ function generateHmgReverseBank(totalCount) {
             options: optionsArr,
             correct: correctText,
             intent: `Maksud Pembuat Soal #${qNum}: ${base.intent}`,
-            rationale: `Referensi Dokumen Reverse PQD HMG: ${base.rationale}`
+            rationale: `Referensi Dokumen Balanced PQD HMG: ${base.rationale}`
         });
     }
     return bank;
 }
 
 // Generate Pre-Test (50 items) and Post-Test (50 items)
-const preTestQuestions = generateHmgReverseBank(50);
-const postTestQuestions = generateHmgReverseBank(50);
+const preTestQuestions = generateHmgBalancedBank(50);
+const postTestQuestions = generateHmgBalancedBank(50);
 
 let currentUser = null;
 let currentTestType = null;
@@ -495,16 +494,16 @@ function escapeHtml(text) {
 }
 
 function initDefaultData() {
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     if (!db['081901685253']) {
         db['081901685253'] = { name: "Giyono Asfarrasyid", phone: "081901685253", preScore: 96, postScore: null };
-        localStorage.setItem('hmg_reverse_pqd_db', JSON.stringify(db));
+        localStorage.setItem('hmg_balanced_pqd_db', JSON.stringify(db));
     }
 }
 
 window.onload = function() {
     initDefaultData();
-    let saved = localStorage.getItem('hmg_reverse_current_user');
+    let saved = localStorage.getItem('hmg_balanced_current_user');
     if (saved) {
         currentUser = JSON.parse(saved);
         showDashboard();
@@ -516,13 +515,13 @@ function handleRegister() {
     const phone = document.getElementById('user-phone').value.trim();
     if (!name || !phone) return alert("Fill out all required fields.");
 
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     if (!db[phone]) db[phone] = { name: name, phone: phone, preScore: null, postScore: null };
     else db[phone].name = name;
 
-    localStorage.setItem('hmg_reverse_pqd_db', JSON.stringify(db));
+    localStorage.setItem('hmg_balanced_pqd_db', JSON.stringify(db));
     currentUser = db[phone];
-    localStorage.setItem('hmg_reverse_current_user', JSON.stringify(currentUser));
+    localStorage.setItem('hmg_balanced_current_user', JSON.stringify(currentUser));
     showDashboard();
 }
 
@@ -534,7 +533,7 @@ function showDashboard() {
     document.getElementById('view-inspector').classList.add('hidden');
     document.getElementById('view-dashboard').classList.remove('hidden');
 
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     if (currentUser && db[currentUser.phone]) currentUser = db[currentUser.phone];
 
     document.getElementById('dash-name').innerText = currentUser.name;
@@ -556,7 +555,7 @@ function showDashboard() {
 }
 
 function logoutUser() {
-    localStorage.removeItem('hmg_reverse_current_user');
+    localStorage.removeItem('hmg_balanced_current_user');
     currentUser = null;
     document.getElementById('view-dashboard').classList.add('hidden');
     document.getElementById('view-register').classList.remove('hidden');
@@ -614,13 +613,13 @@ function finishTest() {
     });
 
     let finalScore = Math.round((scoreCount / currentQuestions.length) * 100);
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     if (currentTestType === 'pre') currentUser.preScore = finalScore;
     else currentUser.postScore = finalScore;
 
     db[currentUser.phone] = currentUser;
-    localStorage.setItem('hmg_reverse_pqd_db', JSON.stringify(db));
-    localStorage.setItem('hmg_reverse_current_user', JSON.stringify(currentUser));
+    localStorage.setItem('hmg_balanced_pqd_db', JSON.stringify(db));
+    localStorage.setItem('hmg_balanced_current_user', JSON.stringify(currentUser));
 
     document.getElementById('view-test').classList.add('hidden');
     document.getElementById('view-result').classList.remove('hidden');
@@ -664,7 +663,7 @@ function openAdminConsole() {
 
 function inspectSet(type) {
     let bank = type === 'pre' ? preTestQuestions : postTestQuestions;
-    let title = type === 'pre' ? 'Pre-Test Reverse Repository (50 Items)' : 'Post-Test Reverse Repository (50 Items)';
+    let title = type === 'pre' ? 'Pre-Test Balanced Repository (50 Items)' : 'Post-Test Balanced Repository (50 Items)';
 
     document.getElementById('view-admin').classList.add('hidden');
     document.getElementById('view-inspector').classList.remove('hidden');
@@ -682,7 +681,7 @@ function inspectSet(type) {
             return `
                 <li style="margin-bottom:6px; list-style-type:none;">
                     <strong>${letter}.</strong> <span class="${classColor}">${escapeHtml(opt)}</span>
-                    ${isCorrect ? '<strong class="hl-green">&#10004; (Jawaban Benar - Diacak)</strong>' : ''}
+                    ${isCorrect ? '<strong class="hl-green">&#10004; (Jawaban Benar - Diacak & Setara Panjangnya)</strong>' : ''}
                 </li>`;
         }).join('');
 
@@ -691,7 +690,7 @@ function inspectSet(type) {
                 <span class="type-badge">Format: ${item.type}</span>
                 <p style="font-size:13px; color:#64748b; margin-bottom:5px;">Candidate Statement (Jawaban):</p>
                 <div class="response-display">${escapeHtml(item.q)}</div>
-                <p style="font-size:13px; color:#64748b; margin-bottom:5px;">Opsi Pertanyaan HRD:</p>
+                <p style="font-size:13px; color:#64748b; margin-bottom:5px;">Opsi Pertanyaan HRD (Panjang & Struktur Setara):</p>
                 <ul style="padding-left:0; font-size:14px; margin-top:5px;">
                     ${optionsHtml}
                 </ul>
@@ -704,7 +703,7 @@ function inspectSet(type) {
 }
 
 function syncScores() {
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     let list = Object.values(db);
     let totalCandidates = list.length;
     let preScores = list.filter(u => u.preScore !== null).map(u => u.preScore);
@@ -736,7 +735,7 @@ function syncScores() {
 }
 
 function exportCSV() {
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     let rows = [["Candidate ID", "Full Name", "Pre-Test Score (50)", "Post-Test Score (50)"]];
     Object.values(db).forEach(u => {
         rows.push([u.phone, u.name, u.preScore !== null ? u.preScore + '%' : 'Pending', u.postScore !== null ? u.postScore + '%' : 'Pending']);
@@ -744,22 +743,22 @@ function exportCSV() {
     let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.map(item => `"${item}"`).join(",")).join("\n");
     let link = document.createElement("a");
     link.setAttribute("href", encodeURI(csvContent));
-    link.setAttribute("download", "HMG_Reverse_PQD_Assessment_Metrics.csv");
+    link.setAttribute("download", "HMG_Balanced_PQD_Assessment_Metrics.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 }
 
 function resetUser(phone) {
-    let db = JSON.parse(localStorage.getItem('hmg_reverse_pqd_db') || '{}');
+    let db = JSON.parse(localStorage.getItem('hmg_balanced_pqd_db') || '{}');
     if (db[phone]) {
         db[phone].preScore = null;
         db[phone].postScore = null;
-        localStorage.setItem('hmg_reverse_pqd_db', JSON.stringify(db));
+        localStorage.setItem('hmg_balanced_pqd_db', JSON.stringify(db));
         if (currentUser && currentUser.phone === phone) {
             currentUser.preScore = null;
             currentUser.postScore = null;
-            localStorage.setItem('hmg_reverse_current_user', JSON.stringify(currentUser));
+            localStorage.setItem('hmg_balanced_current_user', JSON.stringify(currentUser));
         }
         syncScores();
     }
@@ -767,8 +766,8 @@ function resetUser(phone) {
 
 function clearAllData() {
     if (confirm("Are you sure you want to clear all candidate registrations?")) {
-        localStorage.removeItem('hmg_reverse_pqd_db');
-        localStorage.removeItem('hmg_reverse_current_user');
+        localStorage.removeItem('hmg_balanced_pqd_db');
+        localStorage.removeItem('hmg_balanced_current_user');
         currentUser = null;
         syncScores();
     }
