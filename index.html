@@ -106,14 +106,14 @@
 
         <div class="card">
             <h3>1. Pre-Test Balanced Assessment (50 Items)</h3>
-            <p>Comprises balanced-length options across Open-Ended, Closed-Ended, and Blended HMG PQD criteria[cite: 3].</p>
+            <p>Comprises balanced-length options across Open-Ended, Closed-Ended, and Blended HMG PQD criteria.</p>
             <div id="status-pretest">Status: <span class="badge bg-blue">Not Started</span></div>
             <button id="btn-pretest" onclick="startTest('pre')" style="margin-top:15px;">Start Pre-Test (50 Items)</button>
         </div>
 
         <div class="card">
             <h3>2. Post-Test Comprehensive Assessment (50 Items)</h3>
-            <p>Advanced validation test with balanced options matching precise interviewer questions[cite: 3].</p>
+            <p>Advanced validation test with balanced options matching precise interviewer questions.</p>
             <div id="status-posttest">Status: <span class="badge bg-blue">Locked</span></div>
             <button id="btn-posttest" onclick="startTest('post')" style="margin-top:15px;" disabled>Start Post-Test (50 Items)</button>
         </div>
@@ -240,12 +240,12 @@
 <script>
 const OPERATOR_PASS = "SCFHS_2026";
 
-// MASTER BALANCED TEMPLATES (Opsi jawaban dibuat setara panjang dan strukturnya)
+// MASTER BALANCED TEMPLATES (Opsi jawaban dibuat setara panjang dan strukturnya tanpa artefak kutipan)
 const hmgBalancedTemplates = [
     // Closed-Ended
     {
         type: "Closed-Ended",
-        response: "Yes, my total clinical nursing experience is exactly four years in the inpatient department[cite: 3].",
+        response: "Yes, my total clinical nursing experience is exactly four years in the inpatient department.",
         options: [
             "Is your total clinical nursing experience four years in the inpatient department?",
             "Was your total clinical nursing experience four years in the inpatient department?",
@@ -253,12 +253,12 @@ const hmgBalancedTemplates = [
             "Did your total clinical nursing experience span four years in the inpatient ward?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup dengan to-be 'Is' dan konfirmasi kesesuaian pengalaman klinik[cite: 3].",
-        rationale: "Respon 'Yes, my total...' dijawab secara presisi oleh pertanyaan konfirmasi 'Is your total clinical nursing experience four years in the inpatient department?'[cite: 3]."
+        intent: "Maksud Soal: Menguji pertanyaan tertutup dengan to-be 'Is' dan konfirmasi kesesuaian pengalaman klinik.",
+        rationale: "Respon 'Yes, my total...' dijawab secara presisi oleh pertanyaan konfirmasi 'Is your total clinical nursing experience four years in the inpatient department?'."
     },
     {
         type: "Closed-Ended",
-        response: "Yes, I hold an active Bachelor Degree in Nursing for this recommended position[cite: 3].",
+        response: "Yes, I hold an active Bachelor Degree in Nursing for this recommended position.",
         options: [
             "Are you holding an active Bachelor Degree in Nursing for this recommended position?",
             "Were you holding an active Bachelor Degree in Nursing for this recommended role?",
@@ -266,8 +266,8 @@ const hmgBalancedTemplates = [
             "Did you hold an active Bachelor Degree in Nursing for this recommended post?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Are' untuk verifikasi status ijazah[cite: 3].",
-        rationale: "Respon 'Yes, I hold...' merupakan konfirmasi langsung terhadap pertanyaan 'Are you holding an active Bachelor Degree in Nursing for this recommended position?'[cite: 3]."
+        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Are' untuk verifikasi status ijazah.",
+        rationale: "Respon 'Yes, I hold...' merupakan konfirmasi langsung terhadap pertanyaan 'Are you holding an active Bachelor Degree in Nursing for this recommended position?'."
     },
     {
         type: "Closed-Ended",
@@ -284,7 +284,7 @@ const hmgBalancedTemplates = [
     },
     {
         type: "Closed-Ended",
-        response: "Yes, the official overall average rating threshold for hiring is set at 60% and above[cite: 3].",
+        response: "Yes, the official overall average rating threshold for hiring is set at 60% and above.",
         options: [
             "Is the official overall average rating threshold for hiring set at 60% and above?",
             "Was the official overall average rating threshold for hiring set at 60% and above?",
@@ -292,14 +292,14 @@ const hmgBalancedTemplates = [
             "Did the official overall average rating threshold for hiring achieve 60% and above?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Is' terkait ambang batas nilai kelulusan HMG[cite: 3].",
-        rationale: "Respon 'Yes, the official overall...' merupakan jawaban konfirmasi dari 'Is the official overall average rating threshold for hiring set at 60% and above?'[cite: 3]."
+        intent: "Maksud Soal: Menguji pertanyaan tertutup menggunakan to-be 'Is' terkait ambang batas nilai kelulusan HMG.",
+        rationale: "Respon 'Yes, the official overall...' merupakan jawaban konfirmasi dari 'Is the official overall average rating threshold for hiring set at 60% and above?'."
     },
 
     // Open-Ended (9 Wh- words dengan opsi setara panjangnya)
     {
         type: "Open-Ended",
-        response: "My current hospital name is Al-Noor Specialist Hospital and my position is Staff Nurse[cite: 3].",
+        response: "My current hospital name is Al-Noor Specialist Hospital and my position is Staff Nurse.",
         options: [
             "What is your current hospital name and what is your exact position title?",
             "Where is your current hospital located and what is your exact position title?",
@@ -307,12 +307,12 @@ const hmgBalancedTemplates = [
             "Whose is your current hospital employer and what is your exact position level?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word 'What' dengan variasi opsi setara untuk identitas penempatan kerja[cite: 3].",
-        rationale: "Respon nama rumah sakit dan posisi dijawab oleh pertanyaan 'What is your current hospital name and what is your exact position title?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word 'What' dengan variasi opsi setara untuk identitas penempatan kerja.",
+        rationale: "Respon nama rumah sakit dan posisi dijawab oleh pertanyaan 'What is your current hospital name and what is your exact position title?'."
     },
     {
         type: "Open-Ended",
-        response: "The recruiter who conducted and signed my interview sheet is Mr. Abdullah from Corporate HR[cite: 3].",
+        response: "The recruiter who conducted and signed my interview sheet is Mr. Abdullah from Corporate HR.",
         options: [
             "Who is the recruiter that conducted and signed your official interview sheet?",
             "Whom is the recruiter that conducted and signed your official interview sheet?",
@@ -320,12 +320,12 @@ const hmgBalancedTemplates = [
             "Which is the recruiter that conducted and signed your official interview sheet?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word subjek 'Who' dengan pengecoh kata ganti tanya serupa[cite: 3].",
-        rationale: "Respon penyebutan nama perekrut menjawab pertanyaan 'Who is the recruiter that conducted and signed your official interview sheet?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word subjek 'Who' dengan pengecoh kata ganti tanya serupa.",
+        rationale: "Respon penyebutan nama perekrut menjawab pertanyaan 'Who is the recruiter that conducted and signed your official interview sheet?'."
     },
     {
         type: "Open-Ended",
-        response: "I graduated with my nursing diploma in the year 2021[cite: 3].",
+        response: "I graduated with my nursing diploma in the year 2021.",
         options: [
             "When did you complete your education and graduate with your nursing diploma?",
             "Where did you complete your education and graduate with your nursing diploma?",
@@ -333,12 +333,12 @@ const hmgBalancedTemplates = [
             "How did you complete your education and graduate with your nursing diploma?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word waktu 'When' dengan opsi setara konteks kelulusan[cite: 3].",
-        rationale: "Respon tahun kelulusan menjawab pertanyaan 'When did you complete your education and graduate with your nursing diploma?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word waktu 'When' dengan opsi setara konteks kelulusan.",
+        rationale: "Respon tahun kelulusan menjawab pertanyaan 'When did you complete your education and graduate with your nursing diploma?'."
     },
     {
         type: "Open-Ended",
-        response: "I worked previously at King Faisal Specialist Hospital located in Riyadh[cite: 3].",
+        response: "I worked previously at King Faisal Specialist Hospital located in Riyadh.",
         options: [
             "Where did you work previously before applying for this position at HMG?",
             "When did you work previously before applying for this position at HMG?",
@@ -346,12 +346,12 @@ const hmgBalancedTemplates = [
             "How did you work previously before applying for this position at HMG?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word tempat 'Where' dengan struktur opsi yang disetarakan[cite: 3].",
-        rationale: "Respon tempat kerja lama menjawab pertanyaan 'Where did you work previously before applying for this position at HMG?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word tempat 'Where' dengan struktur opsi yang disetarakan.",
+        rationale: "Respon tempat kerja lama menjawab pertanyaan 'Where did you work previously before applying for this position at HMG?'."
     },
     {
         type: "Open-Ended",
-        response: "The interviewer whom I met during the initial screening was Dr. Sulaiman[cite: 3].",
+        response: "The interviewer whom I met during the initial screening was Dr. Sulaiman.",
         options: [
             "Whom did you meet and talk with during your initial recruitment screening?",
             "Who did you meet and talk with during your initial recruitment screening?",
@@ -359,12 +359,12 @@ const hmgBalancedTemplates = [
             "Which did you meet and talk with during your initial recruitment screening?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word objek 'Whom' dengan opsi pengecoh berukuran sama[cite: 3].",
-        rationale: "Respon orang yang ditemui menjawab pertanyaan 'Whom did you meet and talk with during your initial recruitment screening?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word objek 'Whom' dengan opsi pengecoh berukuran sama.",
+        rationale: "Respon orang yang ditemui menjawab pertanyaan 'Whom did you meet and talk with during your initial recruitment screening?'."
     },
     {
         type: "Open-Ended",
-        response: "This verified nursing qualification certificate and credential file belongs to me[cite: 3].",
+        response: "This verified nursing qualification certificate and credential file belongs to me.",
         options: [
             "Whose nursing qualification certificate and credential file is this document?",
             "Who nursing qualification certificate and credential file is this document?",
@@ -372,12 +372,12 @@ const hmgBalancedTemplates = [
             "Which nursing qualification certificate and credential file is this document?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word kepemilikan 'Whose' dengan variasi kata ganti tanya[cite: 3].",
-        rationale: "Respon kepemilikan berkas menjawab pertanyaan 'Whose nursing qualification certificate and credential file is this document?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word kepemilikan 'Whose' dengan variasi kata ganti tanya.",
+        rationale: "Respon kepemilikan berkas menjawab pertanyaan 'Whose nursing qualification certificate and credential file is this document?'."
     },
     {
         type: "Open-Ended",
-        response: "Among all available medical departments, I prefer the Critical Care Department for my clinical placement[cite: 3].",
+        response: "Among all available medical departments, I prefer the Critical Care Department for my clinical placement.",
         options: [
             "Which medical department do you prefer and select for your clinical placement?",
             "What medical department do you prefer and select for your clinical placement?",
@@ -385,12 +385,12 @@ const hmgBalancedTemplates = [
             "Whose medical department do you prefer and select for your clinical placement?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word pilihan 'Which' dengan opsi sepadan[cite: 3].",
-        rationale: "Respon pilihan departemen menjawab pertanyaan 'Which medical department do you prefer and select for your clinical placement?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word pilihan 'Which' dengan opsi sepadan.",
+        rationale: "Respon pilihan departemen menjawab pertanyaan 'Which medical department do you prefer and select for your clinical placement?'."
     },
     {
         type: "Open-Ended",
-        response: "I chose Dr. Sulaiman Al Habib Medical Group because of its outstanding international patient safety standards and global career growth[cite: 3].",
+        response: "I chose Dr. Sulaiman Al Habib Medical Group because of its outstanding international patient safety standards and global career growth.",
         options: [
             "Why did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?",
             "Where did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?",
@@ -398,12 +398,12 @@ const hmgBalancedTemplates = [
             "How did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word alasan 'Why' dengan pilihan opsi berkalimat setara[cite: 3].",
-        rationale: "Respon alasan mendalam menjawab pertanyaan 'Why did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word alasan 'Why' dengan pilihan opsi berkalimat setara.",
+        rationale: "Respon alasan mendalam menjawab pertanyaan 'Why did you choose Dr. Sulaiman Al Habib Medical Group for your professional career?'."
     },
     {
         type: "Open-Ended",
-        response: "I successfully completed the clinical competency assessment by scoring an overall average rating of 85%[cite: 3].",
+        response: "I successfully completed the clinical competency assessment by scoring an overall average rating of 85%.",
         options: [
             "How did you complete the clinical competency assessment and what score did you achieve?",
             "What did you complete the clinical competency assessment and what score did you achieve?",
@@ -411,14 +411,14 @@ const hmgBalancedTemplates = [
             "When did you complete the clinical competency assessment and what score did you achieve?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji Wh- word cara 'How' dengan format kalimat tanya yang diseimbangkan[cite: 3].",
-        rationale: "Respon rincian pencapaian skor menjawab pertanyaan 'How did you complete the clinical competency assessment and what score did you achieve?'[cite: 3]."
+        intent: "Maksud Soal: Menguji Wh- word cara 'How' dengan format kalimat tanya yang diseimbangkan.",
+        rationale: "Respon rincian pencapaian skor menjawab pertanyaan 'How did you complete the clinical competency assessment and what score did you achieve?'."
     },
 
     // Blended
     {
         type: "Blended (Closed & Open)",
-        response: "Yes, my general presentation is highly professional, and it projects clinical confidence and corporate readiness[cite: 3].",
+        response: "Yes, my general presentation is highly professional, and it projects clinical confidence and corporate readiness.",
         options: [
             "Is your general presentation professional, and what impression do you project for the clinical environment?",
             "Was your general presentation professional, and what impression do you project for the clinical environment?",
@@ -426,12 +426,12 @@ const hmgBalancedTemplates = [
             "Did your general presentation remain professional, and what impression do you project for the clinical environment?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji gabungan tertutup dan terbuka mengenai *General Presentation* dengan opsi sepadan[cite: 3].",
-        rationale: "Respon konfirmasi dan deskripsi profesional menjawab pertanyaan 'Is your general presentation professional, and what impression do you project for the clinical environment?'[cite: 3]."
+        intent: "Maksud Soal: Menguji gabungan tertutup dan terbuka mengenai General Presentation dengan opsi sepadan.",
+        rationale: "Respon konfirmasi dan deskripsi profesional menjawab pertanyaan 'Is your general presentation professional, and what impression do you project for the clinical environment?'."
     },
     {
         type: "Blended (Closed & Open)",
-        response: "Yes, both job-related knowledge and job-related skills are evaluated separately to ensure theoretical and practical excellence[cite: 3].",
+        response: "Yes, both job-related knowledge and job-related skills are evaluated separately to ensure theoretical and practical excellence.",
         options: [
             "Are both job-related knowledge and job-related skills evaluated separately, and what do they measure?",
             "Were both job-related knowledge and job-related skills evaluated separately, and what do they measure?",
@@ -439,8 +439,8 @@ const hmgBalancedTemplates = [
             "Did both job-related knowledge and job-related skills undergo separate evaluation, and what do they measure?"
         ],
         correctIndex: 0,
-        intent: "Maksud Soal: Menguji kombinasi pertanyaan tertutup dan terbuka terkait pemisahan *Knowledge* dan *Skills*[cite: 3].",
-        rationale: "Respon konfirmasi dan fungsi penilaian menjawab pertanyaan 'Are both job-related knowledge and job-related skills evaluated separately, and what do they measure?'[cite: 3]."
+        intent: "Maksud Soal: Menguji kombinasi pertanyaan tertutup dan terbuka terkait pemisahan Knowledge dan Skills.",
+        rationale: "Respon konfirmasi dan fungsi penilaian menjawab pertanyaan 'Are both job-related knowledge and job-related skills evaluated separately, and what do they measure?'."
     }
 ];
 
@@ -460,7 +460,6 @@ function generateHmgBalancedBank(totalCount) {
         let optionsArr = [...base.options];
         let correctText = optionsArr[base.correctIndex];
         
-        // Acak posisi jawaban benar secara merata agar tidak monoton
         let seed = (qNum * 19) % optionsArr.length;
         for (let s = 0; s < seed; s++) {
             optionsArr.push(optionsArr.shift());
@@ -478,7 +477,6 @@ function generateHmgBalancedBank(totalCount) {
     return bank;
 }
 
-// Generate Pre-Test (50 items) and Post-Test (50 items)
 const preTestQuestions = generateHmgBalancedBank(50);
 const postTestQuestions = generateHmgBalancedBank(50);
 
@@ -627,7 +625,6 @@ function finishTest() {
     document.getElementById('score-detail').innerText = `You correctly answered ${scoreCount} out of ${currentQuestions.length} items. Passing threshold is 60%.`;
 }
 
-// PASSCODE & ADMIN MANAGEMENT
 function openPassModal() {
     document.getElementById('modal-passcode').classList.remove('hidden');
     document.getElementById('input-operator-pass').focus();
